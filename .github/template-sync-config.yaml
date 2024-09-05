@@ -1,0 +1,10 @@
+dependents:
+  - "openproblems/task_*" # include
+  - "!openproblems/task_template" # exclude
+
+files:
+  - ".gitignore" # include
+
+  # Exclude the template sync action
+  - "!.github/workflows/template-sync.yaml"
+  - "!.github/template-sync-config.yaml"
