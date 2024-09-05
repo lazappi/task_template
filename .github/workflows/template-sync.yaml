@@ -1,0 +1,34 @@
+name: Template sync
+
+on:
+  push:
+    branches:
+      - main
+      - feature/no-ref/template-repository-sync # FOR INITIAL DEV ONLY, REMOVE THIS!!!
+  pull_request:
+    branches:
+      - main
+  workflow_run: # Setup this workflow as a dependency of others
+    workflows: [test, build] # Don't sync template unless tests and other important workflows have passed
+
+jobs:
+  template-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Wait for workflow_run to be successful
+      - name: Wait for workflows
+        uses: ahmadnassri/action-workflow-run-wait@v1
+
+      # Avoid conflicts, by running this template one at a time
+      - name: Queue templates
+        uses: ahmadnassri/action-workflow-queue@v1
+
+      - name: Sync with dependent repositories
+        uses: ahmadnassri/action-template-repository-sync@v1
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          config: .github/template-sync.yml
+          dry-run: true
