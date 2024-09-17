@@ -3,7 +3,7 @@ dependents:
   - "!openproblems/task_template" # exclude
 
 additional:
-  - "task_*" # include
+  - "task_dimensionality_reduction_copy" # include
   - "!task_template"
 
 files:
