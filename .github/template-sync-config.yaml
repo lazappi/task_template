@@ -14,7 +14,12 @@ files:
   - "!README.md"
   - "!CHANGELOG.md"
   - "!_viash.yaml"
-  - "!src/*/*/*"
+  - "!src/api/*"
+  - "!src/control_methods/*/*"
+  - "!src/data_processors/*/*"
+  - "!src/methods/*/*"
+  - "!src/metrics/*/*"
+  - "!src/workflows/*/*"
 
   # Template sync action
   - "!.github/workflows/template-sync.yaml"
