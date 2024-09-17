@@ -2,6 +2,10 @@ dependents:
   - "openproblems/task_*" # include
   - "!openproblems/task_template" # exclude
 
+additional:
+  - "task_*" # include
+  - "!task_template"
+
 files:
   - ".gitignore" # include
 

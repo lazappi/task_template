@@ -8,8 +8,8 @@ on:
   pull_request:
     branches:
       - main
-  workflow_run: # Setup this workflow as a dependency of others
-    workflows: [test, build] # Don't sync template unless tests and other important workflows have passed
+  # workflow_run: # Setup this workflow as a dependency of others
+  #   workflows: [test, build] # Don't sync template unless tests and other important workflows have passed
 
 jobs:
   template-sync:
@@ -18,13 +18,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Wait for workflow_run to be successful
-      - name: Wait for workflows
-        uses: ahmadnassri/action-workflow-run-wait@v1
+      # # Wait for workflow_run to be successful
+      # - name: Wait for workflows
+      #   uses: ahmadnassri/action-workflow-run-wait@v1
 
-      # Avoid conflicts, by running this template one at a time
-      - name: Queue templates
-        uses: ahmadnassri/action-workflow-queue@v1
+      # # Avoid conflicts, by running this template one at a time
+      # - name: Queue templates
+      #   uses: ahmadnassri/action-workflow-queue@v1
 
       - name: Sync with dependent repositories
         uses: ahmadnassri/action-template-repository-sync@v1
